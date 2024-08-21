@@ -1,3 +1,5 @@
+#include <unistd.h>
+
 #include <algorithm>
 #include <atomic>
 #include <functional>
@@ -13,11 +15,20 @@
 #include <string>
 #include <thread>
 #include <vector>
-#include <alsa/asoundlib.h>
 
-int main(int argc, char **argv) {
+#include "basic_audio_driver.hpp"
 
-  printf("test!\r\n");
+int main(int argc, char ** argv)
+{
+  std::cout << "Hello World!" << std::endl;
+
+  std::shared_ptr<tita::audio::BASIC_AUDIO_DRIVER> audio_driver_api =
+    std::make_shared<tita::audio::BASIC_AUDIO_DRIVER>();
+
+  while (1) {
+    audio_driver_api->test();
+    sleep(2);
+  }
 
   return 0;
 }
